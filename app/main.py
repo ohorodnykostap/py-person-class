@@ -18,10 +18,10 @@ def create_person_list(people: list) -> list:
     for item in people:
         current = Person.people[item["name"]]
 
-        if "wife" in item and item["wife"]:
+        if item.get("wife") is not None:
             current.wife = Person.people[item["wife"]]
 
-        if "husband" in item and item["husband"]:
+        if item.get("husband") is not None:
             current.husband = Person.people[item["husband"]]
 
     return person_list
