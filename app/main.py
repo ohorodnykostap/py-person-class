@@ -8,6 +8,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    """
+        Create a list of Person objects
+        and link them as husband/wife if names match.
+        Clears Person.people at the start to avoid residual state.
+    """
     Person.people = {}
     person_list = []
 
@@ -18,10 +23,10 @@ def create_person_list(people: list) -> list:
     for item in people:
         current = Person.people[item["name"]]
 
-        if item.get("wife") is not None:
+        if item.get("wife") and item["wife"] in Person.people:
             current.wife = Person.people[item["wife"]]
 
-        if item.get("husband") is not None:
+        if item.get("husband") and item["husband"] in Person.people:
             current.husband = Person.people[item["husband"]]
 
     return person_list
